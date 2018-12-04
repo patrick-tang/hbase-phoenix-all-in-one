@@ -6,4 +6,4 @@ if [[ ! -d /var/hbase/data ]]; then
    echo "Please create /var/hbase/data folder and set up permission!"
    exit 1
 fi
-docker run --name=hbase-docker -d -p 8765:8765/tcp -v /var/hbase/data:/data $1
+docker run --name=hbase-docker -d --sysctl net.ipv6.conf.all.disable_ipv6=1 -p 8765:8765/tcp -v /var/hbase/data:/data:Z $1
