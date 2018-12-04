@@ -5,7 +5,7 @@ ENV HBASE_VERSION=2.0.0 HBASE_MINOR_VERSION=2.0 PHOENIX_VERSION=5.0.0 HBASE_HADO
 
 # The busybox wget is broken, so we install a vanilla wget. Remove when resolved.
 # See https://github.com/gliderlabs/docker-alpine/issues/292
-RUN apk --no-cache --update add bash ca-certificates gnupg openssl python tar wget \
+RUN apk --no-cache --update add bash ca-certificates gnupg openssl python tar curl wget \
  && apk --no-cache --update --repository https://dl-3.alpinelinux.org/alpine/edge/community/ add xmlstarlet \
  && update-ca-certificates \
 \
@@ -63,6 +63,9 @@ RUN apk --no-cache --update add bash ca-certificates gnupg openssl python tar wg
 
 EXPOSE 8765
 
+VOLUME /data
+
+ADD ./hbase-site.xml /opt/hbase/conf/hbase-site.xml
 ADD start-hbase-phoenix.sh /start-hbase-phoenix.sh
 
 CMD ["./start-hbase-phoenix.sh"]
