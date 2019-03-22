@@ -6,3 +6,5 @@ secondary indexes and the query server enabled.
 #### Important
 This image is not suitable for production use as it does not uses HDFS for storage. This image is
 designed for testing only.
+
+(something)
